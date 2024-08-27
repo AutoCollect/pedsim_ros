@@ -2,11 +2,21 @@
 Changelog for package pedsim_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.1 / 2024-08-28 
+==================
+
+ * add metalform carpark senario file in pedsim_simulator/scenarios/carpark_sim.xml
+ * reduce dynamic obstacle moving speed to 0.35 m/s in 3rdparty/libpedsim/src/ped_agent.cpp
+ * arrange pedsim_simulator/launch/simple_pedestrians.launch
+ * bug need to fix for person tracking trace into map frame
+   * pedsim_simulator/src/simulator.cpp
+   * pedsim_visualizer/src/sim_visualizer.cpp
+
 0.2.0 / 2024-08-28 
 ==================
 
  * merge pedsim_ros_with_gazebo branch drl_vo
- https://github.com/TempleRAIL/pedsim_ros_with_gazebo
+   https://github.com/TempleRAIL/pedsim_ros_with_gazebo
 
 0.1.1 / 2016-06-04 
 ==================

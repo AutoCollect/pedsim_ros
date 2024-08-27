@@ -114,6 +114,7 @@ void SimVisualizer::publishAgentVisuals() {
 
   pedsim_msgs::TrackedPersons tracked_people;
   tracked_people.header = current_states->header;
+  tracked_people.header.frame_id = "map";
 
   for (const auto& agent_state : current_states->agent_states) {
 

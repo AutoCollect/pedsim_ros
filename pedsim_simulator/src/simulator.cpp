@@ -124,7 +124,8 @@ bool Simulator::initializeSimulation() {
 
   double spawn_period;
   nh_.param<double>("spawn_period", spawn_period, 5.0);
-  nh_.param<std::string>("frame_id", frame_id_, "odom");
+  // nh_.param<std::string>("frame_id", frame_id_, "odom");
+  nh_.param<std::string>("frame_id", frame_id_, "map");
   nh_.param<std::string>("robot_base_frame_id", robot_base_frame_id_,
       "base_footprint");
 

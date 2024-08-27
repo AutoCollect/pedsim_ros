@@ -31,7 +31,8 @@ Ped::Tagent::Tagent() {
   teleop = false;
 
   // assign random maximal speed in m/s
-  normal_distribution<double> distribution(1.34, 0.26);
+  // normal_distribution<double> distribution(1.34, 0.26);
+  normal_distribution<double> distribution(0.35, 0.06);
   vmax = distribution(generator);
 
   // changed by xzt:
@@ -152,8 +153,9 @@ Ped::Tvector Ped::Tagent::socialForce() const {
   const double n_prime = 3;
 
   // define eye contact interaction: added by xzt
-  const double eye_sigma = 0.2;
-  const double eye_prob = 0.8;
+  // -Wunused-variable
+  // const double eye_sigma = 0.2;
+  // const double eye_prob = 0.8;
 
   Tvector force;
   for (const Ped::Tagent* other : neighbors) {
