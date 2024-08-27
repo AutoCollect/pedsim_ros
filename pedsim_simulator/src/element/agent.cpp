@@ -157,6 +157,9 @@ void Agent::move(double h) {
 
       // FIXME: This is a very hacky way of making the robot "move" (=update
       // position in hash tree) without actually moving it
+
+      // changed by xzt:
+      Ped::Tagent::setVmax(0.65);
       const double vx = getvx();
       const double vy = getvy();
 
