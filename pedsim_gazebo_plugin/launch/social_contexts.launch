@@ -2,8 +2,12 @@
 
         <!-- this file is auto generated using pedsim_gazebo_plugin pkg -->  
         
-        <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <include file="$(find robot_gazebo)/launch/empty_world.launch">
+             <arg name="use_sim_time" value="true"/>
+             <arg name="debug" value="false"/>
+             <arg name="gui" value="true" />
              <arg name="world_name" value="$(find pedsim_gazebo_plugin)/worlds/social_contexts.world"/>
+             <remap from="tf" to="gazebo_tf"/>
          </include>
          
          <!-- this node spawn pedsim actors to gazebo once, then the plugin updates their pose -->  

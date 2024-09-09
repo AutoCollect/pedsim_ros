@@ -89,7 +89,8 @@ bool Simulator::initializeSimulation() {
       "unpause_simulation", &Simulator::onUnpauseSimulation, this);
 
   // setup TF listener and other pointers
-  transform_listener_.reset(new tf::TransformListener());
+  // changed by xzt:
+  //transform_listener_.reset(new tf::TransformListener());
   robot_ = nullptr;
 
   // load additional parameters
@@ -123,7 +124,8 @@ bool Simulator::initializeSimulation() {
 
   double spawn_period;
   nh_.param<double>("spawn_period", spawn_period, 5.0);
-  nh_.param<std::string>("frame_id", frame_id_, "odom");
+  // nh_.param<std::string>("frame_id", frame_id_, "odom");
+  nh_.param<std::string>("frame_id", frame_id_, "map");
   nh_.param<std::string>("robot_base_frame_id", robot_base_frame_id_,
       "base_footprint");
 
@@ -152,6 +154,16 @@ void Simulator::runSimulation() {
 
     if (!paused_) {
       updateRobotPositionFromTF();
+      // renew the robot position in the scene: added by xzt
+      for (Agent* agent : SCENE.getAgents()) {
+          if (agent->getType() == Ped::Tagent::ROBOT) 
+          {
+            robot_->setType(Ped::Tagent::ROBOT);
+            SCENE.agents[agent->getId()] = robot_;
+            break;
+          }
+       }  
+
       SCENE.moveAllAgents();
 
       publishAgents();
@@ -226,6 +238,28 @@ void Simulator::updateRobotPositionFromTF() {
     robot_->setTeleop(true);
     robot_->setVmax(2 * CONFIG.max_robot_speed);
 
+    // get the real robot position from the gazebo world: added by xzt
+    ros::ServiceClient client = nh_.serviceClient<gazebo_msgs::GetModelState>("/gazebo/get_model_state");
+    gazebo_msgs::GetModelState getmodelstate;
+    getmodelstate.request.model_name = "mobile_base";
+    getmodelstate.request.relative_entity_name = "world"; 
+    client.call(getmodelstate);
+
+    last_robot_orientation_ = getmodelstate.response.pose.orientation;
+
+    const double x = getmodelstate.response.pose.position.x;
+    const double y = getmodelstate.response.pose.position.y;
+    double vx = getmodelstate.response.twist.linear.x;
+    double vy = getmodelstate.response.twist.linear.y;
+
+    if (!std::isfinite(vx)) vx = 0;
+    if (!std::isfinite(vy)) vy = 0;
+
+    robot_->setX(x+0.0);
+    robot_->setY(y+0.0);
+    robot_->setvx(vx);
+    robot_->setvy(vy);
+    /*
     // Get robot position via TF
     tf::StampedTransform tfTransform;
     try {
@@ -261,6 +295,7 @@ void Simulator::updateRobotPositionFromTF() {
     ROS_DEBUG_STREAM("Robot speed: " << std::hypot(vx, vy) << " dt: " << dt);
 
     last_robot_pose_ = tfTransform;
+    */
   }
 }
 
@@ -273,6 +308,8 @@ void Simulator::publishRobotPosition() {
 
   robot_location.pose.pose.position.x = robot_->getx();
   robot_location.pose.pose.position.y = robot_->gety();
+  // changed by xzt:
+  /*
   if (hypot(robot_->getvx(), robot_->getvy()) < 0.05) {
     robot_location.pose.pose.orientation = last_robot_orientation_;
   } else {
@@ -280,6 +317,8 @@ void Simulator::publishRobotPosition() {
         poseFrom2DVelocity(robot_->getvx(), robot_->getvy());
     last_robot_orientation_ = robot_location.pose.pose.orientation;
   }
+  */
+  robot_location.pose.pose.orientation = last_robot_orientation_;
 
   robot_location.twist.twist.linear.x = robot_->getvx();
   robot_location.twist.twist.linear.y = robot_->getvy();

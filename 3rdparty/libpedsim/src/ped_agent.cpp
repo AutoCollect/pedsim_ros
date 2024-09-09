@@ -31,17 +31,19 @@ Ped::Tagent::Tagent() {
   teleop = false;
 
   // assign random maximal speed in m/s
-  normal_distribution<double> distribution(1.34, 0.26);
+  // normal_distribution<double> distribution(1.34, 0.26);
+  normal_distribution<double> distribution(0.35, 0.06);
   vmax = distribution(generator);
 
+  // changed by xzt:
   forceFactorDesired = 1.0;
   forceFactorSocial = 2.1;
-  forceFactorObstacle = 10.0;
-  forceSigmaObstacle = 0.8;
+  forceFactorObstacle = 6.0;//10.0;
+  forceSigmaObstacle = 0.8;//0.8;
 
   agentRadius = 0.35;
   relaxationTime = 0.5;
-  robotPosDiffScalingFactor = 5;
+  robotPosDiffScalingFactor = 2; //5;
 }
 
 /// Destructor
@@ -150,6 +152,11 @@ Ped::Tvector Ped::Tagent::socialForce() const {
   // (set according to Moussaid-Helbing 2009)
   const double n_prime = 3;
 
+  // define eye contact interaction: added by xzt
+  // -Wunused-variable
+  // const double eye_sigma = 0.2;
+  // const double eye_prob = 0.8;
+
   Tvector force;
   for (const Ped::Tagent* other : neighbors) {
     // don't compute social force to yourself
@@ -157,9 +164,9 @@ Ped::Tvector Ped::Tagent::socialForce() const {
 
     // compute difference between both agents' positions
     Tvector diff = other->p - p;
-
+    // change this can let robot not collide with pedestrian: by xzt
     if(other->getType() == ROBOT) diff /= robotPosDiffScalingFactor;
-
+      
     Tvector diffDirection = diff.normalized();
 
     // compute difference between both agents' velocity vectors

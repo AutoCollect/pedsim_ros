@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This scenario file was created by SGDiCoP on 2014-04-16T15:14:48-->
+<scenario>
+  <!--Obstacles-->
+  <!--
+  <obstacle x1="1.5"  y1="1.5"   x2="14.0" y2="7.0"  />
+  <obstacle x1="14.0" y1="7.0"   x2="25.7" y2="-21.2"/>
+  <obstacle x1="25.7" y1="-21.2" x2="11.8" y2="-26.0"/>
+  <obstacle x1="11.8" y1="-26.0" x2="1.5"  y2="1.5" />
+  -->
+
+  <!--Waypoints (incl. WaitingQueues)-->
+  <waypoint id="A" x="9.32"  y="2.78"  r="1"/>
+  <waypoint id="B" x="12.12" y="-3.57" r="1"/>
+  <waypoint id="C" x="17.0"  y="-1.7"  r="1"/>
+  <waypoint id="D" x="13.7"  y="6.0"   r="1"/>
+
+  <waypoint id="E" x="10.0"  y="-14.3" r="1"/>
+  <waypoint id="F" x="20.1"  y="-10"   r="1"/>
+  <waypoint id="G" x="23.0"  y="-16"   r="1"/>
+  <waypoint id="H" x="10.5"  y="-20"   r="1"/>
+
+  <!--AgentClusters-->
+  <agent x="8" y="2" n="2" dx="0.25" dy="0.35" type="0">
+    <addwaypoint id="A"/>
+    <addwaypoint id="B"/>
+    <addwaypoint id="C"/>
+    <addwaypoint id="D"/>
+  </agent>
+
+  <agent x="17" y="-2" n="2" dx="0.25" dy="0.35" type="0">
+    <addwaypoint id="C"/>
+    <addwaypoint id="D"/>
+    <addwaypoint id="A"/>
+    <addwaypoint id="B"/>
+  </agent>
+
+  <agent x="9" y="-13" n="2" dx="0.25" dy="0.35" type="0">
+    <addwaypoint id="E"/>
+    <addwaypoint id="F"/>
+    <addwaypoint id="G"/>
+    <addwaypoint id="H"/>
+  </agent>
+
+  <!--
+  <agent x="20" y="-10" n="2" dx="0.25" dy="0.35" type="0">
+    <addwaypoint id="F"/>
+    <addwaypoint id="G"/>
+    <addwaypoint id="H"/>
+    <addwaypoint id="E"/>
+  </agent>
+  -->
+
+  <agent x="23" y="-16" n="2" dx="0.25" dy="0.35" type="0">
+    <addwaypoint id="G"/>
+    <addwaypoint id="H"/>
+    <addwaypoint id="E"/>
+    <addwaypoint id="F"/>
+  </agent>
+
+</scenario>
