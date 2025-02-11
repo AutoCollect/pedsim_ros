@@ -4,6 +4,9 @@ cmake_minimum_required(VERSION 2.8)
 cmake_policy(SET CMP0148 NEW)
 cmake_policy(SET CMP0167 NEW)
 
+# Suppress developer warnings (same as using -Wno-dev on the command line)
+set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS 1 CACHE INTERNAL "Suppress developer warnings")
+
 project(pedsim_simulator)
 
 # Append our local cmake modules folder so that our stub FindPythonInterp is found.
