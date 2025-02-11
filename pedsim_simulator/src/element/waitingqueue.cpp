@@ -231,8 +231,8 @@ void WaitingQueue::informAboutEndPosition() {
   }
 }
 
-Ped::Tvector WaitingQueue::closestPoint(const Ped::Tvector& p,
-                                        bool* withinWaypoint) const {
+Ped::Tvector WaitingQueue::closestPoint(const Ped::Tvector& /*p*/,
+                                        bool* /*withinWaypoint*/) const {
   return getQueueEndPosition();
 }
 

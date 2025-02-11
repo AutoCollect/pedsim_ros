@@ -97,7 +97,7 @@ AgentGroup::AgentGroup(std::initializer_list<Agent*>& agentsIn) {
 
 AgentGroup::~AgentGroup() {}
 
-void AgentGroup::onPositionChanged(double x, double y) {
+void AgentGroup::onPositionChanged(double /*x*/, double /*y*/) {
   // mark center of mass as dirty (needs to be re-calculated)
   dirty = true;
   dirtyMaxDistance = true;

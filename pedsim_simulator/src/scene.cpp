@@ -51,7 +51,7 @@
 // initialize static value
 Scene* Scene::Scene::instance = nullptr;
 
-Scene::Scene(QObject* parent) {
+Scene::Scene(QObject* /*parent*/) {
   // initialize values
   sceneTime = 0;
 

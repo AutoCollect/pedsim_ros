@@ -178,7 +178,7 @@ void Simulator::runSimulation() {
 }
 
 void Simulator::reconfigureCB(pedsim_simulator::PedsimSimulatorConfig& config,
-                              uint32_t level) {
+                              uint32_t /*level*/) {
   CONFIG.updateRate = config.update_rate;
   CONFIG.simulationFactor = config.simulation_factor;
 
@@ -202,19 +202,19 @@ void Simulator::reconfigureCB(pedsim_simulator::PedsimSimulatorConfig& config,
                                                         << config.update_rate);
 }
 
-bool Simulator::onPauseSimulation(std_srvs::Empty::Request& request,
-                                  std_srvs::Empty::Response& response) {
+bool Simulator::onPauseSimulation(std_srvs::Empty::Request& /*request*/,
+                                  std_srvs::Empty::Response& /*response*/) {
   paused_ = true;
   return true;
 }
 
-bool Simulator::onUnpauseSimulation(std_srvs::Empty::Request& request,
-                                    std_srvs::Empty::Response& response) {
+bool Simulator::onUnpauseSimulation(std_srvs::Empty::Request& /*request*/,
+                                    std_srvs::Empty::Response& /*response*/) {
   paused_ = false;
   return true;
 }
 
-void Simulator::spawnCallback(const ros::TimerEvent& event) {
+void Simulator::spawnCallback(const ros::TimerEvent& /*event*/) {
   ROS_DEBUG_STREAM("Spawning new agents.");
 
   for (const auto& sa : SCENE.getSpawnAreas()) {
