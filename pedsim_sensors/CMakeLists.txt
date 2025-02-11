@@ -1,5 +1,12 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(pedsim_sensors)
+
+# Append our local cmake modules folder so that our stub FindPythonInterp is found.
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
+
+# (Optional) Explicitly set the Python executable if needed.
+set(PYTHON_EXECUTABLE "/usr/bin/python3")
+
 add_definitions(-Wall -Wunused -std=c++11 -pipe -Wunused -Wextra)
 
 set(PACKAGE_DEPS

@@ -1,5 +1,16 @@
 cmake_minimum_required(VERSION 2.8.3)
+
+# Set policies to avoid deprecation warnings
+cmake_policy(SET CMP0148 NEW)
+cmake_policy(SET CMP0167 NEW)
+
 project(pedsim)
+
+# Append our local cmake modules folder so that our stub FindPythonInterp is found.
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
+
+# (Optional) Explicitly set the Python executable if needed.
+set(PYTHON_EXECUTABLE "/usr/bin/python3")
 
 #------------------ Configuration ------------------#
 option(SHALL_DEBUG "Enable debug features" OFF)
