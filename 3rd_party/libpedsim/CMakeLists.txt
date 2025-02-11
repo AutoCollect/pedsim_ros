@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.10)
 
 # Set policies to avoid deprecation warnings
 cmake_policy(SET CMP0148 NEW)
@@ -25,13 +25,13 @@ option(CMAKE_VERBOSE_MAKEFILE "Full compiler output" ON)
 add_definitions(-Wall -Wunused -std=c++0x -pipe)
 
 #debugging
-if(SHALL_DEBUG)
-  message("Debugging activated")
-  add_definitions(-O0 -DDEBUG -ggdb -g3 -rdynamic)
-else(SHALL_DEBUG)
-  message("Debugging deactivated")
-  add_definitions(-Os)
-endif(SHALL_DEBUG)
+# if(SHALL_DEBUG)
+#   message("Debugging activated")
+#   add_definitions(-O0 -DDEBUG -ggdb -g3 -rdynamic)
+# else(SHALL_DEBUG)
+#   message("Debugging deactivated")
+#   add_definitions(-Os)
+# endif(SHALL_DEBUG)
 
 
 find_package(catkin REQUIRED COMPONENTS
