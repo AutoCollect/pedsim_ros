@@ -53,7 +53,7 @@ void GroupCoherenceForce::setGroup(AgentGroup* groupIn) { group = groupIn; }
 
 const AgentGroup& GroupCoherenceForce::getGroup() const { return *group; }
 
-Ped::Tvector GroupCoherenceForce::getForce(Ped::Tvector walkingDirection) {
+Ped::Tvector GroupCoherenceForce::getForce(Ped::Tvector /*walkingDirection*/) {
   // sanity checks
   if (group->isEmpty()) {
     ROS_DEBUG("Computing GroupCoherenceForce for empty group!");

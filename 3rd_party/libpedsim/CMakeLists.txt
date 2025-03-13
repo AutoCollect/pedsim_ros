@@ -1,5 +1,19 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.10)
+
+# Set policies to avoid deprecation warnings
+cmake_policy(SET CMP0148 NEW)
+cmake_policy(SET CMP0167 NEW)
+
+# Suppress developer warnings (same as using -Wno-dev on the command line)
+set(CMAKE_SUPPRESS_DEVELOPER_WARNINGS 1 CACHE INTERNAL "Suppress developer warnings")
+
 project(pedsim)
+
+# Append our local cmake modules folder so that our stub FindPythonInterp is found.
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
+
+# (Optional) Explicitly set the Python executable if needed.
+set(PYTHON_EXECUTABLE "/usr/bin/python3")
 
 #------------------ Configuration ------------------#
 option(SHALL_DEBUG "Enable debug features" OFF)
@@ -11,13 +25,13 @@ option(CMAKE_VERBOSE_MAKEFILE "Full compiler output" ON)
 add_definitions(-Wall -Wunused -std=c++0x -pipe)
 
 #debugging
-if(SHALL_DEBUG)
-  message("Debugging activated")
-  add_definitions(-O0 -DDEBUG -ggdb -g3 -rdynamic)
-else(SHALL_DEBUG)
-  message("Debugging deactivated")
-  add_definitions(-Os)
-endif(SHALL_DEBUG)
+# if(SHALL_DEBUG)
+#   message("Debugging activated")
+#   add_definitions(-O0 -DDEBUG -ggdb -g3 -rdynamic)
+# else(SHALL_DEBUG)
+#   message("Debugging deactivated")
+#   add_definitions(-Os)
+# endif(SHALL_DEBUG)
 
 
 find_package(catkin REQUIRED COMPONENTS

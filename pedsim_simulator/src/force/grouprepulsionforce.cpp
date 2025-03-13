@@ -53,7 +53,7 @@ void GroupRepulsionForce::setGroup(AgentGroup* groupIn) { group = groupIn; }
 
 const AgentGroup& GroupRepulsionForce::getGroup() const { return *group; }
 
-Ped::Tvector GroupRepulsionForce::getForce(Ped::Tvector walkingDirection) {
+Ped::Tvector GroupRepulsionForce::getForce(Ped::Tvector /*walkingDirection*/) {
   // sanity checks
   if (group->isEmpty()) {
     ROS_DEBUG("Computing GroupRepulsionForce for empty group!");

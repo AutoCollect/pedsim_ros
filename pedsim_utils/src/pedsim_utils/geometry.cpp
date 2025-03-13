@@ -35,7 +35,8 @@ geometry_msgs::Quaternion toQuaternionMsg(
   gq.y = quaternion.y();
   gq.z = quaternion.z();
   gq.w = quaternion.w();
-  return std::move(gq);
+  // return std::move(gq);
+  return gq;
 }
 
 geometry_msgs::Quaternion poseFrom2DVelocity(const double vx, const double vy) {

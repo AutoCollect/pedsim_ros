@@ -74,7 +74,7 @@ Ped::Tvector RandomForce::computeNewDeviation() {
   return deviation;
 }
 
-Ped::Tvector RandomForce::getForce(Ped::Tvector walkingDirection) {
+Ped::Tvector RandomForce::getForce(Ped::Tvector /*walkingDirection*/) {
   // use the current time to compute the fading progress
   double time = SCENE.getTime();
   double progress = fmod(time, fadingDuration);

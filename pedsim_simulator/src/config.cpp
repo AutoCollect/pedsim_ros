@@ -34,7 +34,7 @@
 // initialize static value
 Config* Config::Config::instance = nullptr;
 
-Config::Config(QObject* parent) {
+Config::Config(QObject* /*parent*/) {
   updateRate = 25.0;
   simulationFactor = 1.0;
 

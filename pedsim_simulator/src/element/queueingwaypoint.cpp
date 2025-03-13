@@ -79,8 +79,8 @@ Ped::Tvector QueueingWaypoint::getForce(const Ped::Tagent& agentIn,
   }
 }
 
-Ped::Tvector QueueingWaypoint::closestPoint(const Ped::Tvector& posIn,
-                                            bool* withinWaypoint) const {
+Ped::Tvector QueueingWaypoint::closestPoint(const Ped::Tvector& /*posIn*/,
+                                            bool* /*withinWaypoint*/) const {
   return position;
 }
 
